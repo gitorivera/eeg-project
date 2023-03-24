@@ -7,7 +7,7 @@ def load_data():
     file_path = filedialog.askopenfilename()
     if file_path:
         global eeglab_raw
-        eeglab_raw = mne.io.read_raw_eeglab(file_path)
+        eeglab_raw = mne.io.read_raw_eeglab(file_path, preload=True)
         messagebox.showinfo("Cargar datos", "Datos cargados correctamente")
 
 def filter_data():
