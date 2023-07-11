@@ -20,3 +20,12 @@ def rmse(predictions, targets):
     mse = sum(squared_errors) / len(predictions)
     rmse = np.sqrt(mse)
     return rmse
+
+def re(predictions, targets):
+    N = targets.shape[0]
+    M = targets.shape[1]
+    
+    epsilon = np.mean(np.sum(np.abs(targets - predictions) / M, axis=1))
+    sigma_e = np.sqrt(np.mean(np.sum(np.abs(targets - predictions) / M, axis = 1) - epsilon) ** 2)
+    
+    return sigma_e
