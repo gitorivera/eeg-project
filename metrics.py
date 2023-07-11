@@ -21,11 +21,14 @@ def rmse(predictions, targets):
     rmse = np.sqrt(mse)
     return rmse
 
-def re(predictions, targets):
+def re(predictions, targets, return_epsilon = False):
     N = targets.shape[0]
     M = targets.shape[1]
     
     epsilon = np.mean(np.sum(np.abs(targets - predictions) / M, axis=1))
     sigma_e = np.sqrt(np.mean(np.sum(np.abs(targets - predictions) / M, axis = 1) - epsilon) ** 2)
     
-    return sigma_e
+    if return_epsilon:
+        return sigma_e, epsilon
+    else:
+        return sigma_e
