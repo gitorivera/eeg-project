@@ -26,9 +26,9 @@ def re(predictions, targets, return_epsilon = False):
     M = targets.shape[1]
     
     epsilon = np.mean(np.sum(np.abs(targets - predictions) / M, axis=1))
-    sigma_e = np.sqrt(np.mean(np.sum(np.abs(targets - predictions) / M, axis = 1) - epsilon) ** 2)
-    
+    sigma_e = np.sqrt(np.mean((np.sum(np.abs(targets - predictions) / M, axis = 1) - epsilon) ** 2))
+
     if return_epsilon:
-        return sigma_e, epsilon
+        return f"{sigma_e:.8f}", f"{epsilon:.8f}"
     else:
-        return sigma_e
+        return f"{sigma_e:.8f}"
